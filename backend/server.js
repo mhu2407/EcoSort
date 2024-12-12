@@ -39,6 +39,7 @@ async function fetchDataFromJetsonNano() {
 app.get('/data', async (req, res) => {
     // Call this function to fetch data
     try {
+        console.log("fetching data from jetson");
         const data = await fetchDataFromJetsonNano(); // Fetch data from Jetson Nano
         // if (data && Array.isArray(data)) {
         //     const old_data = readDataFromFile();
@@ -55,6 +56,6 @@ app.get('/data', async (req, res) => {
 });
 
 const PORT = 8000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
 });
