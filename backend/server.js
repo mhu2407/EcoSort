@@ -15,7 +15,7 @@ const readDataFromFile = () => {
       if (data && Array.isArray(data.data)) {
         return data.data;
       } else {
-        return {};
+        return [];
       }
     } catch (err) {
       return []; // Return an empty array if file doesn't exist or is empty
@@ -40,8 +40,13 @@ app.get('/data', async (req, res) => {
     // Call this function to fetch data
     try {
         const data = await fetchDataFromJetsonNano(); // Fetch data from Jetson Nano
+        if (data && Array.isArray(data)) {
+            const old_data = readDataFromFile();
+            const updated_data = old_data.push(data);
+            writeDataToFile(updated_data);
+            res.status(200).send(updated_data);
+        } 
         // console.log(data);
-        res.status(200).send(data); // Send the fetched data back to the frontend
     } catch (error) {
         res.status(500).send({ error: 'Error fetching data from Jetson Nano' });
     }
