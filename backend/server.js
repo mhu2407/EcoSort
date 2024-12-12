@@ -7,6 +7,24 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const axios = require('axios');
+const dataFilePath = 'data.json';
+
+const readDataFromFile = () => {
+    try {
+      const data = fs.readFileSync(dataFilePath, 'utf-8');
+      if (data && Array.isArray(data.data)) {
+        return data.data;
+      } else {
+        return {};
+      }
+    } catch (err) {
+      return []; // Return an empty array if file doesn't exist or is empty
+    }
+};
+
+const writeDataToFile = (data) => {
+    fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
+};
 
 async function fetchDataFromJetsonNano() {
     try {
@@ -29,7 +47,7 @@ app.get('/data', async (req, res) => {
     }
 });
 
-const PORT = 3000;
+const PORT = 8000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
