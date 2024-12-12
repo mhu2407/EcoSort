@@ -46,6 +46,7 @@ app.get('/data', async (req, res) => {
             writeDataToFile(updated_data);
             res.status(200).send(updated_data);
         } 
+        console.log('idk whats happening');
         res.status(500).send([]);
     } catch (error) {
         res.status(500).send({ error: 'Error fetching data from Jetson Nano' });
