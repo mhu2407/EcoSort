@@ -1,0 +1,1 @@
+ssh -i "ecosort-pem.pem" ubuntu@ec2-98-81-170-175.compute-1.amazonaws.com
