@@ -28,7 +28,7 @@ const dataFilePath = 'data.json';
 
 async function fetchDataFromJetsonNano() {
     try {
-        const response = await axios.get('http://172.26.7.162:8080/data');  // Replace with the Jetson Nano's IP
+        const response = await axios.get('http://18.209.46.145:8080/data');  // Replace with the Jetson Nano's IP
         console.log('Received data from Jetson Nano:', response.data);
         return response.data;
     } catch (error) {
